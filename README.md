@@ -19,3 +19,8 @@ This web application helps improve digital literacy across university staff and 
 - ✅ Question Screen (6 design variations)
 
 ## Repo Structure
+project/
+├── designs/ → Figma mockups and design assets
+├── code/ → Source code (HTML, CSS, JS)
+├── docs/ → Documentation and guides
+└── README.md → This file

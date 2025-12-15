@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Literacy – Start</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts (developers can swap to exact Figma fonts later) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Start screen styles -->
+  <link rel="stylesheet" href="./styles/start-screen.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Background layer (gradient / color block) -->
+    <div class="app__background"></div>
+
+    <!-- Main card / panel -->
+    <main class="start">
+      <!-- Logo / project name row -->
+      <header class="start__header">
+        <div class="start__logo-circle">DL</div>
+        <div class="start__title-group">
+          <p class="start__eyebrow">Digital Literacy Toolkit</p>
+          <h1 class="start__heading">Level up your digital skills</h1>
+        </div>
+      </header>
+
+      <!-- Description text -->
+      <section class="start__body">
+        <p class="start__intro">
+          This short activity will help you reflect on your current level of
+          digital confidence and discover learning paths tailored to you.
+        </p>
+
+        <ul class="start__highlights">
+          <li>3 levels of questions (Beginner, Intermediate, Advanced)</li>
+          <li>Approx. 5–7 minutes to complete</li>
+          <li>No right or wrong answers – just your experience</li>
+        </ul>
+      </section>
+
+      <!-- Info row: level / progress etc. -->
+      <section class="start__meta">
+        <div class="start__meta-item">
+          <span class="start__meta-label">You are starting at</span>
+          <span class="start__meta-value">Level 1 · Foundation</span>
+        </div>
+        <div class="start__meta-item">
+          <span class="start__meta-label">Questions</span>
+          <span class="start__meta-value">7 per level</span>
+        </div>
+      </section>
+
+      <!-- Primary CTA -->
+      <section class="start__actions">
+        <button class="btn btn--primary" type="button">
+          Start assessment
+        </button>
+        <button class="btn btn--ghost" type="button">
+          View levels overview
+        </button>
+      </section>
+
+      <!-- Tiny footer note -->
+      <footer class="start__footer">
+        <p class="start__footnote">
+          Your responses are anonymous and will only be used to support staff
+          development planning.
+        </p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

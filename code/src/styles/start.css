@@ -8,7 +8,7 @@
   gap: 32px;
 }
 
-/* Extra spacing above title to mimic top white space from mockup */
+/* Extra spacing above title */
 .screen--start .screen__title {
   margin-top: 40px;
 }

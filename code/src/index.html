@@ -5,18 +5,20 @@
   <title>Start Your Learning Journey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Shared base styles -->
   <link rel="stylesheet" href="./styles/base.css" />
+  <!-- Start screen specific styles -->
   <link rel="stylesheet" href="./styles/start.css" />
 </head>
 <body>
   <div class="app">
     <main class="screen screen--start" aria-labelledby="start-title">
-      <!-- Title centred in the page -->
+      <!-- Centered heading (matches mockup 2: text only + button) -->
       <h1 class="screen__title" id="start-title">
         Start Your Learning Journey!
       </h1>
 
-      <!-- Primary start button -->
+      <!-- Big primary Start button -->
       <button
         class="btn screen__start-button"
         type="button"
@@ -28,8 +30,9 @@
   </div>
 
   <script>
-    // When user clicks Start, go to loading page
+    // When the Start button is clicked, go to the loading page
     document.getElementById('start-button').addEventListener('click', () => {
+      // loading.html is in the same folder as index.html (src/)
       window.location.href = 'loading.html';
     });
   </script>

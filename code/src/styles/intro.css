@@ -1,0 +1,37 @@
+/* Layout for intro screen */
+
+.screen--intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text block below the image */
+.screen__copy {
+  max-width: 960px;
+  margin-top: 32px;
+}
+
+/* Match bold look and centre alignment from mockup */
+.screen__text--line1,
+.screen__text--line2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.screen__text--line1 {
+  margin-bottom: 4px;
+}
+
+.screen__text--line2 {
+  margin-top: 0;
+}
+
+/* On very small screens, slightly reduce size */
+@media (max-width: 480px) {
+  .screen__text--line1,
+  .screen__text--line2 {
+    font-size: 1.05rem;
+  }
+}

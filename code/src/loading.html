@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loading…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/loading.css" />
+</head>
+<body>
+  <div class="app">
+    <main class="screen screen--loading" aria-labelledby="loading-title">
+      <!-- Illustration (sleepy computer) -->
+      <div class="screen__image-wrapper">
+        <!-- TODO: Replace src with your actual file name, e.g. Start-Screen-1.jpg -->
+        <img
+          src="../assets/images/loading-computer.png"
+          alt="Computer character with sleepy eyes"
+          class="screen__image"
+        />
+      </div>
+
+      <!-- Progress bar + label -->
+      <section class="loader" aria-live="polite">
+        <div class="loader__track" aria-hidden="true">
+          <span class="loader__block"></span>
+          <span class="loader__block"></span>
+          <span class="loader__block"></span>
+        </div>
+        <p class="loader__label" id="loading-title">loading…</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Simulated loading: after X ms, go to intro screen
+    const LOADING_DURATION_MS = 2500; // change this if you want longer/shorter
+
+    setTimeout(() => {
+      window.location.href = 'intro.html';
+    }, LOADING_DURATION_MS);
+  </script>
+</body>
+</html>

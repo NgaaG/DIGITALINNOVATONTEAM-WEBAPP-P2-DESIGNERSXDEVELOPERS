@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Digital Literacy – Start</title>
+  <title>Start Your Learning Journey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts (developers can swap to exact Figma fonts later) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -13,69 +12,106 @@
     rel="stylesheet"
   />
 
-  <!-- Start screen styles -->
   <link rel="stylesheet" href="./styles/start-screen.css" />
 </head>
 <body>
   <div class="app">
-    <!-- Background layer (gradient / color block) -->
-    <div class="app__background"></div>
 
-    <!-- Main card / panel -->
-    <main class="start">
-      <!-- Logo / project name row -->
-      <header class="start__header">
-        <div class="start__logo-circle">DL</div>
-        <div class="start__title-group">
-          <p class="start__eyebrow">Digital Literacy Toolkit</p>
-          <h1 class="start__heading">Level up your digital skills</h1>
-        </div>
-      </header>
+    <!-- ONBOARDING STATE (image 1) -->
+    <main class="screen screen--start" id="start-screen" aria-labelledby="start-title">
+      <section class="screen__illustration" aria-hidden="true">
+        <div class="computer computer--awake">
+          <div class="computer__face">
+            <div class="computer__eyes computer__eyes--happy">
+              <span></span><span></span>
+            </div>
+            <div class="computer__mouth computer__mouth--neutral"></div>
+          </div>
 
-      <!-- Description text -->
-      <section class="start__body">
-        <p class="start__intro">
-          This short activity will help you reflect on your current level of
-          digital confidence and discover learning paths tailored to you.
-        </p>
+          <div class="computer__body">
+            <div class="computer__switch"></div>
+            <div class="computer__slot"></div>
+            <div class="computer__square"></div>
+          </div>
 
-        <ul class="start__highlights">
-          <li>3 levels of questions (Beginner, Intermediate, Advanced)</li>
-          <li>Approx. 5–7 minutes to complete</li>
-          <li>No right or wrong answers – just your experience</li>
-        </ul>
-      </section>
-
-      <!-- Info row: level / progress etc. -->
-      <section class="start__meta">
-        <div class="start__meta-item">
-          <span class="start__meta-label">You are starting at</span>
-          <span class="start__meta-value">Level 1 · Foundation</span>
-        </div>
-        <div class="start__meta-item">
-          <span class="start__meta-label">Questions</span>
-          <span class="start__meta-value">7 per level</span>
+          <div class="computer__mouse">
+            <div class="computer__mouse-body"></div>
+            <div class="computer__mouse-cable"></div>
+          </div>
         </div>
       </section>
 
-      <!-- Primary CTA -->
-      <section class="start__actions">
-        <button class="btn btn--primary" type="button">
-          Start assessment
-        </button>
-        <button class="btn btn--ghost" type="button">
-          View levels overview
+      <section class="screen__content">
+        <h1 class="screen__title" id="start-title">
+          Start Your Learning Journey!
+        </h1>
+
+        <button
+          class="btn btn--primary"
+          type="button"
+          id="start-button"
+        >
+          Start
         </button>
       </section>
+    </main>
 
-      <!-- Tiny footer note -->
-      <footer class="start__footer">
-        <p class="start__footnote">
-          Your responses are anonymous and will only be used to support staff
-          development planning.
-        </p>
-      </footer>
+    <!-- LOADING STATE (image 2) -->
+    <main
+      class="screen screen--loading"
+      id="loading-screen"
+      aria-labelledby="loading-title"
+      hidden
+    >
+      <section class="screen__illustration" aria-hidden="true">
+        <div class="computer computer--sleepy">
+          <div class="computer__face">
+            <div class="computer__eyes computer__eyes--sleepy">
+              <span></span><span></span>
+            </div>
+            <div class="computer__mouth computer__mouth--o"></div>
+          </div>
+
+          <div class="computer__body">
+            <div class="computer__switch"></div>
+            <div class="computer__slot"></div>
+            <div class="computer__square"></div>
+          </div>
+
+          <div class="computer__mouse">
+            <div class="computer__mouse-body"></div>
+            <div class="computer__mouse-cable"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen__content">
+        <div class="loader">
+          <div class="loader__track">
+            <span class="loader__block"></span>
+            <span class="loader__block"></span>
+            <span class="loader__block"></span>
+          </div>
+          <p class_name="loader__label" id="loading-title">loading…</p>
+        </div>
+      </section>
     </main>
   </div>
+
+  <script>
+    // Simple state toggle: start → loading
+    const startButton = document.getElementById('start-button');
+    const startScreen = document.getElementById('start-screen');
+    const loadingScreen = document.getElementById('loading-screen');
+
+    startButton.addEventListener('click', () => {
+      startScreen.hidden = true;
+      loadingScreen.hidden = false;
+
+      // TODO: developers: after X seconds or after data is ready,
+      // navigate to the first level / question page, e.g.:
+      // window.location.href = 'level-1.html';
+    });
+  </script>
 </body>
 </html>

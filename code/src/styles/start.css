@@ -1,0 +1,19 @@
+/* Specific tweaks for the start screen */
+
+.screen--start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+/* Extra spacing above title to mimic top white space from mockup */
+.screen--start .screen__title {
+  margin-top: 40px;
+}
+
+/* Add vertical spacing between title and button */
+.screen__start-button {
+  margin-top: 16px;
+}

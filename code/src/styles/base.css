@@ -1,0 +1,111 @@
+/* Shared layout + typography across onboarding screens */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text-main: #111827;
+  --color-text-muted: #4b5563;
+  --color-button-bg: #e5e5e5;
+  --color-button-bg-hover: #d4d4d4;
+  --transition-fast: 0.18s ease-out;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+/* Center content vertically & horizontally */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Column content */
+.screen {
+  max-width: 960px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Generic title */
+.screen__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.7vw, 2.2rem);
+}
+
+/* Reusable button */
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 64px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: var(--color-button-bg);
+  color: var(--color-text-main);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--color-button-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
+
+/* Image wrapper to keep illustration size consistent */
+.screen__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.screen__image {
+  width: min(420px, 80vw);
+  height: auto;
+  display: block;
+}
+
+/* Smaller text */
+.screen__text {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 16px;
+  }
+
+  .btn {
+    width: min(260px, 80vw);
+  }
+}

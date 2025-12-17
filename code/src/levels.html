@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level Path</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .level-wrapper {
+      width: 100%;
+      max-width: 650px;
+      padding: 40px 16px;
+    }
+
+    .level-track {
+      position: relative;
+      width: 100%;
+      height: 900px; /* enough to mimic tall layout */
+      margin: 0 auto;
+    }
+
+    /* Curved path – just a single thick stroke using border-radius */
+    .track-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 14px;
+      height: 100%;
+      background: #b3b3b3;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      opacity: 0.9;
+    }
+
+    /* Each segment is nudged with translate to create wiggles */
+    .track-seg {
+      position: absolute;
+      width: 14px;
+      height: 33%;
+      background: #b3b3b3;
+      border-radius: 999px;
+    }
+
+    .track-seg.seg-1 { top: 0; left: 48%; transform: rotate(8deg); }
+    .track-seg.seg-2 { top: 30%; left: 30%; transform: rotate(-18deg); }
+    .track-seg.seg-3 { top: 60%; right: 22%; transform: rotate(15deg); }
+
+    /* Common styles for “keys” */
+    .level-node {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 10px;
+      background: #bfbfbf;
+      box-shadow: 0 4px 0 #9d9d9d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .level-node-inner {
+      width: 88%;
+      height: 88%;
+      border-radius: 8px;
+      background: #8f8f8f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      gap: 2px;
+    }
+
+    .level-number {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .level-symbol {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .level-node:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #8f8f8f;
+    }
+
+    /* Node positions (approximate to your image) */
+
+    .n1 { top: 20px; left: 18%; }
+    .n2 { top: 120px; left: 45%; }
+    .n3 { top: 220px; right: 16%; }
+
+    .n5 { top: 360px; left: 15%; }
+    .n4 { top: 320px; left: 42%; }
+
+    .n6 { top: 520px; left: 45%; }
+    .n7 { top: 520px; right: 16%; }
+
+    .n8 { top: 700px; left: 42%; }
+    .n9 { top: 780px; left: 12%; }
+
+    /* Optional: mark completed / current / locked states */
+
+    .completed .level-node-inner {
+      background: #6abf69;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+
+    .current .level-node-inner {
+      background: #5a9bd5;
+    }
+
+    .locked .level-node-inner {
+      background: #c4c4c4;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="level-wrapper">
+    <section class="level-track" aria-label="Question path">
+
+      <!-- background path segments -->
+      <div class="track-seg seg-1"></div>
+      <div class="track-seg seg-2"></div>
+      <div class="track-seg seg-3"></div>
+
+      <!-- Level nodes 1–9 -->
+      <button class="level-node completed n1" aria-label="Question 1">
+        <div class="level-node-inner">
+          <span class="level-number">1</span>
+          <span class="level-symbol">!</span>
+        </div>
+      </button>
+
+      <button class="level-node completed n2" aria-label="Question 2">
+        <div class="level-node-inner">
+          <span class="level-number">2</span>
+          <span class="level-symbol">@</span>
+        </div>
+      </button>
+
+      <button class="level-node completed n3" aria-label="Question 3">
+        <div class="level-node-inner">
+          <span class="level-number">3</span>
+          <span class="level-symbol">#</span>
+        </div>
+      </button>
+
+      <button class="level-node completed n4" aria-label="Question 4">
+        <div class="level-node-inner">
+          <span class="level-number">4</span>
+          <span class="level-symbol">$</span>
+        </div>
+      </button>
+
+      <button class="level-node completed n5" aria-label="Question 5">
+        <div class="level-node-inner">
+          <span class="level-number">5</span>
+          <span class="level-symbol">%</span>
+        </div>
+      </button>
+
+      <button class="level-node current n6" aria-label="Question 6">
+        <div class="level-node-inner">
+          <span class="level-number">6</span>
+          <span class="level-symbol">^</span>
+        </div>
+      </button>
+
+      <button class="level-node locked n7" aria-label="Question 7">
+        <div class="level-node-inner">
+          <span class="level-number">7</span>
+          <span class="level-symbol">&amp;</span>
+        </div>
+      </button>
+
+      <button class="level-node locked n8" aria-label="Question 8">
+        <div class="level-node-inner">
+          <span class="level-number">8</span>
+          <span class="level-symbol">*</span>
+        </div>
+      </button>
+
+      <button class="level-node locked n9" aria-label="Question 9">
+        <div class="level-node-inner">
+          <span class="level-number">9</span>
+          <span class="level-symbol">–</span>
+        </div>
+      </button>
+
+    </section>
+  </main>
+
+  <script>
+    // Example: wire up navigation to your existing question pages.
+    // Adjust mapping based on which questions you actually have.
+    const nodeLinks = {
+      1: "question-1.html",
+      2: "question-2.html",
+      3: "question-3.html",
+      4: "question-4.html",
+      5: "question-5.html",
+      6: "question-6.html",
+      7: "question-7.html"
+      // 8, 9 can be future levels
+    };
+
+    document.querySelectorAll(".level-node").forEach(node => {
+      node.addEventListener("click", () => {
+        const num = node.querySelector(".level-number").textContent.trim();
+        const target = nodeLinks[num];
+        if (target && !node.classList.contains("locked")) {
+          window.location.href = target;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

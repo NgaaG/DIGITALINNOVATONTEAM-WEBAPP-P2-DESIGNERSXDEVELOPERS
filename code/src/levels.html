@@ -34,20 +34,7 @@
       margin: 0 auto;
     }
 
-    /* Curved path – just a single thick stroke using border-radius */
-    .track-line {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 14px;
-      height: 100%;
-      background: #b3b3b3;
-      border-radius: 999px;
-      transform: translateX(-50%);
-      opacity: 0.9;
-    }
-
-    /* Each segment is nudged with translate to create wiggles */
+    /* Curved path: 3 rotated segments to fake the squiggle */
     .track-seg {
       position: absolute;
       width: 14px;
@@ -105,7 +92,6 @@
     }
 
     /* Node positions (approximate to your image) */
-
     .n1 { top: 20px; left: 18%; }
     .n2 { top: 120px; left: 45%; }
     .n3 { top: 220px; right: 16%; }
@@ -118,8 +104,6 @@
 
     .n8 { top: 700px; left: 42%; }
     .n9 { top: 780px; left: 12%; }
-
-    /* Optional: mark completed / current / locked states */
 
     .completed .level-node-inner {
       background: #6abf69;
@@ -213,8 +197,7 @@
   </main>
 
   <script>
-    // Example: wire up navigation to your existing question pages.
-    // Adjust mapping based on which questions you actually have.
+    // Navigation for completed/current levels
     const nodeLinks = {
       1: "question-1.html",
       2: "question-2.html",
@@ -223,7 +206,7 @@
       5: "question-5.html",
       6: "question-6.html",
       7: "question-7.html"
-      // 8, 9 can be future levels
+      // 8, 9 reserved for future
     };
 
     document.querySelectorAll(".level-node").forEach(node => {

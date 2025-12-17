@@ -1,0 +1,198 @@
+/* Shared layout for all question screens */
+
+.question-app {
+  min-height: 100vh;
+  background-color: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+/* Card container (white box) */
+.question-card {
+  width: min(1024px, 100%);
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Top grey bar with darker tab */
+.question-card__header {
+  position: relative;
+  background-color: #b5b5b5;
+  height: 72px;
+}
+
+.question-card__tab {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 33%;
+  height: 72px;
+  background-color: #4f4f4f;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+/* We will shift this tab with a modifier class per question */
+.question-card__tab--q1 { left: 0%; }
+.question-card__tab--q2 { left: 10%; }
+.question-card__tab--q3 { left: 20%; }
+.question-card__tab--q4 { left: 30%; }
+.question-card__tab--q5 { left: 40%; }
+.question-card__tab--q6 { left: 50%; }
+.question-card__tab--q7 { left: 60%; }
+
+/* Content area */
+.question-card__body {
+  padding: 40px 80px 40px;
+}
+
+.question-card__title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.question-card__title {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.question-card__subtitle {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #9a9a9a;
+}
+
+/* Question text */
+.question-card__question {
+  margin: 0 0 40px 0;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+/* Options list */
+.question-card__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Single option row */
+.question-option {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 1.1rem;
+}
+
+/* Custom checkbox square */
+.question-option__box {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #b5b5b5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide real checkbox, use :checked + label to style */
+.question-option__input {
+  display: none;
+}
+
+.question-option__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+}
+
+/* Inner square shows when checked */
+.question-option__inner {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+/* When checked, fill inner square */
+.question-option__input:checked + .question-option__label .question-option__inner {
+  background-color: #4f4f4f;
+}
+
+/* Bottom nav row: Previous + Continue / Submit */
+.question-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+/* Previous button (text only) */
+.question-nav__prev {
+  background: none;
+  border: none;
+  color: #4f4f4f;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 16px;
+}
+
+.question-nav__prev:hover {
+  text-decoration: underline;
+}
+
+/* Primary nav button same style as big grey buttons */
+.question-nav__next {
+  border: none;
+  border-radius: 6px;
+  padding: 12px 34px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  color: #111827;
+  transition: background-color 0.18s ease-out, transform 0.18s ease-out,
+    box-shadow 0.18s ease-out;
+}
+
+.question-nav__next:hover {
+  background-color: #d4d4d4;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+
+/* Disabled state (no option selected yet) */
+.question-nav__next[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Align Continue button to far right on wide cards */
+@media (max-width: 900px) {
+  .question-card__body {
+    padding: 24px 16px 32px;
+  }
+
+  .question-card__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .question-card__options {
+    gap: 24px;
+  }
+}

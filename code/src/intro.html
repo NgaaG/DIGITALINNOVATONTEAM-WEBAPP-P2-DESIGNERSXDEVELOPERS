@@ -13,10 +13,11 @@
     <main class="screen screen--intro" aria-labelledby="intro-title">
       <!-- Illustration (happy computer) -->
       <div class="screen__image-wrapper">
+        <!-- Keep your actual image path here -->
         <img
-  src="../assets/images/Help the computer grow.png"
-  alt="Computer character with sleepy eyes"
-  class="screen__image"
+          src="../assets/images/Help-the-computer-grow.png"
+          alt="Smiling computer character with mouse"
+          class="screen__image"
         />
       </div>
 
@@ -29,7 +30,25 @@
           But first, let’s get to know each other!
         </p>
       </section>
+
+      <!-- LET'S GO button under the text -->
+      <button
+        class="btn screen__intro-button"
+        type="button"
+        id="intro-lets-go"
+      >
+        LET'S GO!
+      </button>
     </main>
   </div>
+
+  <script>
+    // Go from intro screen → first question
+    document
+      .getElementById('intro-lets-go')
+      .addEventListener('click', () => {
+        window.location.href = 'question-1.html';
+      });
+  </script>
 </body>
 </html>

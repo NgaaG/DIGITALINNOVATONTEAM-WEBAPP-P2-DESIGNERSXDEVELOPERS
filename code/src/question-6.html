@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Question 6 of 7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/questions.css" />
+</head>
+<body>
+  <div class="question-app">
+    <main class="question-card" aria-labelledby="q-title">
+      <header class="question-card__header">
+        <div class="question-card__tab question-card__tab--q6"></div>
+      </header>
+
+      <section class="question-card__body">
+        <div class="question-card__title-row">
+          <h1 class="question-card__title" id="q-title">Question 6</h1>
+          <p class="question-card__subtitle">out of 7</p>
+        </div>
+
+        <p class="question-card__question">
+          Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet
+          ipsum dolor sit?
+        </p>
+
+        <ul class="question-card__options">
+          <li class="question-option">
+            <input
+              class="question-option__input"
+              type="radio"
+              name="q6"
+              id="q6-option-1"
+              value="option-1"
+            />
+            <label class="question-option__label" for="q6-option-1">
+              <span class="question-option__box">
+                <span class="question-option__inner"></span>
+              </span>
+              <span>Lorem ipsum dolor sit amet</span>
+            </label>
+          </li>
+
+          <li class="question-option">
+            <input
+              class="question-option__input"
+              type="radio"
+              name="q6"
+              id="q6-option-2"
+              value="option-2"
+            />
+            <label class="question-option__label" for="q6-option-2">
+              <span class="question-option__box">
+                <span class="question-option__inner"></span>
+              </span>
+              <span>Lorem ipsum dolor sit amet</span>
+            </label>
+          </li>
+
+          <li class="question-option">
+            <input
+              class="question-option__input"
+              type="radio"
+              name="q6"
+              id="q6-option-3"
+              value="option-3"
+            />
+            <label class="question-option__label" for="q6-option-3">
+              <span class="question-option__box">
+                <span class="question-option__inner"></span>
+              </span>
+              <span>Lorem ipsum dolor sit amet</span>
+            </label>
+          </li>
+
+          <li class="question-option">
+            <input
+              class="question-option__input"
+              type="radio"
+              name="q6"
+              id="q6-option-4"
+              value="option-4"
+            />
+            <label class="question-option__label" for="q6-option-4">
+              <span class="question-option__box">
+                <span class="question-option__inner"></span>
+              </span>
+              <span>Lorem ipsum dolor sit amet</span>
+            </label>
+          </li>
+        </ul>
+
+        <footer class="question-card__footer">
+          <button
+            class="question-nav__prev"
+            type="button"
+            id="q6-prev"
+          >
+            Previous
+          </button>
+
+          <button
+            class="question-nav__next"
+            type="button"
+            id="q6-continue"
+            disabled
+          >
+            Continue
+          </button>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const q6Options = document.querySelectorAll('input[name="q6"]');
+    const q6Continue = document.getElementById('q6-continue');
+    const q6Prev = document.getElementById('q6-prev');
+
+    q6Options.forEach((option) => {
+      option.addEventListener('change', () => {
+        q6Continue.disabled = false;
+      });
+    });
+
+    q6Prev.addEventListener('click', () => {
+      window.location.href = 'question-5.html';
+    });
+
+    q6Continue.addEventListener('click', () => {
+      window.location.href = 'question-7.html';
+    });
+  </script>
+</body>
+</html>

@@ -24,17 +24,17 @@
     .level-wrapper {
       width: 100%;
       max-width: 650px;
-      padding: 40px 16px;
+      padding: 40px 16px 24px;
     }
 
     .level-track {
       position: relative;
       width: 100%;
       height: 900px; /* enough to mimic tall layout */
-      margin: 0 auto;
+      margin: 0 auto 24px;
     }
 
-    /* Curved path: 3 rotated segments to fake the squiggle */
+    /* Curved path segments */
     .track-seg {
       position: absolute;
       width: 14px;
@@ -47,7 +47,6 @@
     .track-seg.seg-2 { top: 30%; left: 30%; transform: rotate(-18deg); }
     .track-seg.seg-3 { top: 60%; right: 22%; transform: rotate(15deg); }
 
-    /* Common styles for “keys” */
     .level-node {
       position: absolute;
       width: 78px;
@@ -58,7 +57,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      /* CHANGE: pointer → default (no click) */
+      cursor: default;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
@@ -87,11 +87,11 @@
     }
 
     .level-node:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 0 #8f8f8f;
+      /* CHANGE: remove hover “pop” if you want it fully static */
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 #8f8f8f;
     }
 
-    /* Node positions (approximate to your image) */
     .n1 { top: 20px; left: 18%; }
     .n2 { top: 120px; left: 45%; }
     .n3 { top: 220px; right: 16%; }
@@ -118,6 +118,37 @@
       background: #c4c4c4;
       opacity: 0.6;
     }
+
+    /* NEW: back button styling */
+    .level-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .back-button {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #030712;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+
+    .back-button:hover {
+      background: #020617;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 #030712;
+    }
+
+    .back-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 #030712;
+    }
   </style>
 </head>
 <body>
@@ -129,95 +160,86 @@
       <div class="track-seg seg-2"></div>
       <div class="track-seg seg-3"></div>
 
-      <!-- Level nodes 1–9 -->
-      <button class="level-node completed n1" aria-label="Question 1">
+      <!-- Level nodes 1–9 (visual only now) -->
+      <div class="level-node completed n1" aria-label="Question 1">
         <div class="level-node-inner">
           <span class="level-number">1</span>
           <span class="level-symbol">!</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node completed n2" aria-label="Question 2">
+      <div class="level-node completed n2" aria-label="Question 2">
         <div class="level-node-inner">
           <span class="level-number">2</span>
           <span class="level-symbol">@</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node completed n3" aria-label="Question 3">
+      <div class="level-node completed n3" aria-label="Question 3">
         <div class="level-node-inner">
           <span class="level-number">3</span>
           <span class="level-symbol">#</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node completed n4" aria-label="Question 4">
+      <div class="level-node completed n4" aria-label="Question 4">
         <div class="level-node-inner">
           <span class="level-number">4</span>
           <span class="level-symbol">$</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node completed n5" aria-label="Question 5">
+      <div class="level-node completed n5" aria-label="Question 5">
         <div class="level-node-inner">
           <span class="level-number">5</span>
           <span class="level-symbol">%</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node current n6" aria-label="Question 6">
+      <div class="level-node current n6" aria-label="Question 6">
         <div class="level-node-inner">
           <span class="level-number">6</span>
           <span class="level-symbol">^</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node locked n7" aria-label="Question 7">
+      <div class="level-node locked n7" aria-label="Question 7">
         <div class="level-node-inner">
           <span class="level-number">7</span>
           <span class="level-symbol">&amp;</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node locked n8" aria-label="Question 8">
+      <div class="level-node locked n8" aria-label="Question 8">
         <div class="level-node-inner">
           <span class="level-number">8</span>
           <span class="level-symbol">*</span>
         </div>
-      </button>
+      </div>
 
-      <button class="level-node locked n9" aria-label="Question 9">
+      <div class="level-node locked n9" aria-label="Question 9">
         <div class="level-node-inner">
           <span class="level-number">9</span>
           <span class="level-symbol">–</span>
         </div>
-      </button>
-
+      </div>
     </section>
+
+    <!-- NEW: back to start screen button -->
+    <div class="level-actions">
+      <button class="back-button" type="button" id="back-to-start">
+        Back to start screen
+      </button>
+    </div>
   </main>
 
   <script>
-    // Navigation for completed/current levels
-    const nodeLinks = {
-      1: "question-1.html",
-      2: "question-2.html",
-      3: "question-3.html",
-      4: "question-4.html",
-      5: "question-5.html",
-      6: "question-6.html",
-      7: "question-7.html"
-      // 8, 9 reserved for future
-    };
-
-    document.querySelectorAll(".level-node").forEach(node => {
-      node.addEventListener("click", () => {
-        const num = node.querySelector(".level-number").textContent.trim();
-        const target = nodeLinks[num];
-        if (target && !node.classList.contains("locked")) {
-          window.location.href = target;
-        }
-      });
+    // NEW: simple redirect back to index.html
+    document.getElementById('back-to-start').addEventListener('click', () => {
+      window.location.href = 'index.html';
     });
+
+    // NOTE: all node click navigation removed on purpose
   </script>
 </body>
 </html>
